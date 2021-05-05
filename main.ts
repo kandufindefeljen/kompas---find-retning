@@ -1,13 +1,10 @@
-/**
- * https://www.instructables.com/Microbit-Compass/
- */
 input.onPinPressed(TouchPin.P0, function () {
     basic.showNumber(input.compassHeading())
 })
 input.onButtonPressed(Button.A, function () {
-    retning += -1
-    if (retning < 0) {
-        retning = 7
+    retning += 1
+    if (retning > 7) {
+        retning = 0
     }
 })
 input.onButtonPressed(Button.AB, function () {
@@ -16,9 +13,9 @@ input.onButtonPressed(Button.AB, function () {
     basic.showString("" + (text_list[retning]))
 })
 input.onButtonPressed(Button.B, function () {
-    retning += 1
-    if (retning > 7) {
-        retning = 0
+    retning += -1
+    if (retning < 0) {
+        retning = 7
     }
 })
 let text_list: string[] = []
@@ -26,7 +23,7 @@ let retning = 0
 retning = 0
 basic.showString("kompas")
 /**
- * først afgør hvilke grad den ligger under derefter vurder hvilken retning den vil pege mod
+ * https://www.instructables.com/Microbit-Compass/
  */
 basic.forever(function () {
     if (input.compassHeading() >= 23 && input.compassHeading() < 68) {
